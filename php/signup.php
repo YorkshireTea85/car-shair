@@ -1,10 +1,7 @@
 <?php 
     include_once 'header.php'; 
 
-    $todayDate = date('Y-n-d');
-    $nowTime = date('G:i:s');
-    $dateCreated = $todayDate . ' ' . $nowTime;
-
+    $dateCreated = date('Y-m-d H:i:s');
 ?>
 
 <section class="flex flex-col justify-center items-center">

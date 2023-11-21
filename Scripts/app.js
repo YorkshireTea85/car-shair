@@ -25,4 +25,5 @@ window.addEventListener("DOMContentLoaded", (event) => {
         });
         mobileMenu.classList.toggle("hidden");
     })
+
 });

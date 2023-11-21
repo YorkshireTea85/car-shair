@@ -56,7 +56,7 @@
 				<a href="http://localhost/web_engineering/car-shair/index.php" class="bg-secondary-500 text-primary-900 rounded-md px-3 py-2 text-lg font-medium" aria-current="page">Home</a>
 				<a href="#" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 rounded-md px-3 py-2 text-lg font-medium">Search</a>
 				<a href="#" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 rounded-md px-3 py-2 text-lg font-medium">My Bookings</a>
-				<a href="#" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 rounded-md px-3 py-2 text-lg font-medium">My Vehicles</a>
+				<a href="http://localhost/web_engineering/car-shair/php/add-vehicle.php" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 rounded-md px-3 py-2 text-lg font-medium">My Vehicles</a>
 			</div>
 			</div>
 		</div>
@@ -81,13 +81,13 @@
 						echo '<div class="relative ml-4">
 							<a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
 							<a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-							<form action="includes/logout.inc.php" method="POST" class="">
+							<form action="http://localhost/web_engineering/car-shair/includes/logout.inc.php" method="POST" class="">
 							<button class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2" type="submit" name="submit">Sign out</button>
 							</form>
 						</div>';
 					} else {
 						echo '<div class="relative ml-4">
-						<form action="includes/login.inc.php" method="POST" class="flex flex-col">
+						<form action="http://localhost/web_engineering/car-shair/php/includes/login.inc.php" method="POST" class="flex flex-col">
 							<div class="flex-col items-center">
 							<input class="shadow appearance-none border rounded-full py-1 px-2 mr-4 mb-1 mt-2 text-gray-700 leading-6 focus:outline-none focus:shadow-outline" id="username" type="text" name="uid" placeholder="Username or e-mail">
 							<input class="shadow appearance-none border rounded-full py-1 px-2 mr-4 mb-2 mt-1 text-gray-700 leading-6 focus:outline-none focus:shadow-outline self-end" id="password" type="password" name="pwd" placeholder="******************">

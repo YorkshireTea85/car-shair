@@ -38,4 +38,4 @@ if ($response !== false) {
     }
 
 curl_close($curl);
-}  
+}

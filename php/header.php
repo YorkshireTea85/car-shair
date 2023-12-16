@@ -10,8 +10,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>CarShair: Find or Share a Car</title>
-	<link href="http://localhost/web_engineering/car-shair/output.css" rel="stylesheet">
-	<script src="http://localhost/web_engineering/car-shair/scripts/app.js"></script>
+	<link href="/output.css" rel="stylesheet">
+	<script src="/scripts/app.js"></script>
+	<script type="module" defer src="https://cdn.what3words.com/javascript-components@4.1.0/dist/what3words/what3words.esm.js"></script>
+	<script nomodule defer src="https://cdn.what3words.com/javascript-components@4.1.0/dist/what3words/what3words.js"></script> 
 </head>
 <body>
 	<nav class="bg-primary-500">
@@ -53,10 +55,10 @@
 			</div>
 			<div class="hidden sm:ml-6 sm:block flex items-center">
 			<div class="flex justify-center items-center space-x-4">
-				<a href="http://localhost/web_engineering/car-shair/index.php" class="bg-secondary-500 text-primary-900 rounded-md px-3 py-2 text-lg font-medium" aria-current="page">Home</a>
-				<a href="#" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 rounded-md px-3 py-2 text-lg font-medium">Search</a>
+				<a href="/index.php" class="bg-secondary-500 text-primary-900 rounded-md px-3 py-2 text-lg font-medium" aria-current="page">Home</a>
+				<a href="/php/search.php" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 rounded-md px-3 py-2 text-lg font-medium">Search</a>
 				<a href="#" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 rounded-md px-3 py-2 text-lg font-medium">My Bookings</a>
-				<a href="http://localhost/web_engineering/car-shair/php/add-vehicle.php" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 rounded-md px-3 py-2 text-lg font-medium">My Vehicles</a>
+				<a href="/php/add-vehicle.php" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 rounded-md px-3 py-2 text-lg font-medium">My Vehicles</a>
 			</div>
 			</div>
 		</div>
@@ -74,20 +76,20 @@
 			<!--
 				Dropdown menu, show/hide based on menu state.
 			-->
-			<div id="profile_menu" class="absolute bg-secondary-500 right-0 z-10 mt-2 w-50 origin-top-right rounded-md py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" >
+			<div id="profile-menu" class="absolute bg-secondary-500 top-[60px] -right-[16px] z-10 mt-2 w-50 origin-top-right rounded-bl-md pt-1 pb-3 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" >
 				<!-- Login -->
 				<?php
 					if (isset($_SESSION['u_id'])) {
 						echo '<div class="relative ml-4">
 							<a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
 							<a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-							<form action="http://localhost/web_engineering/car-shair/includes/logout.inc.php" method="POST" class="">
+							<form action="/includes/logout.inc.php" method="POST" class="">
 							<button class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2" type="submit" name="submit">Sign out</button>
 							</form>
 						</div>';
 					} else {
 						echo '<div class="relative ml-4">
-						<form action="http://localhost/web_engineering/car-shair/php/includes/login.inc.php" method="POST" class="flex flex-col">
+						<form action="/includes/login.inc.php" method="POST" class="flex flex-col">
 							<div class="flex-col items-center">
 							<input class="shadow appearance-none border rounded-full py-1 px-2 mr-4 mb-1 mt-2 text-gray-700 leading-6 focus:outline-none focus:shadow-outline" id="username" type="text" name="uid" placeholder="Username or e-mail">
 							<input class="shadow appearance-none border rounded-full py-1 px-2 mr-4 mb-2 mt-1 text-gray-700 leading-6 focus:outline-none focus:shadow-outline self-end" id="password" type="password" name="pwd" placeholder="******************">
@@ -96,7 +98,7 @@
 								<button class="bg-primary-500 hover:bg-primary-200 text-white font-bold py-2 w-20 rounded-full focus:outline-none focus:shadow-outline" type="submit" name="submit">
 									Login
 								</button>
-								<a href="http://localhost/web_engineering/car-shair/php/signup.php" class="hover:text-primary-200 hover:underline text-primary-500 font-bold ml-4 mb-2 py-2 w-20 rounded focus:outline-none focus:shadow-outline cursor-pointer">
+								<a href="/php/signup.php" class="hover:text-primary-200 hover:underline text-primary-500 font-bold ml-4 mb-2 py-2 w-20 rounded focus:outline-none focus:shadow-outline cursor-pointer">
 									Sign Up
 								</a>
 							</div>
@@ -113,10 +115,10 @@
 	<!-- Mobile menu, show/hide based on menu state. -->
 	<div class="sm:hidden hidden" id="mobile-menu">
 		<div class="space-y-1 px-2 pb-3 pt-2">
-		<a href="#" class="bg-secondary-500 text-primary-900 block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Home</a>
-		<a href="#" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 block rounded-md px-3 py-2 text-base font-medium">Search</a>
+		<a href="/php/search.php" class="bg-secondary-500 text-primary-900 block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Home</a>
+		<a href="/php/search.php" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 block rounded-md px-3 py-2 text-base font-medium">Search</a>
 		<a href="#" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 block rounded-md px-3 py-2 text-base font-medium">My Bookings</a>
-		<a href="#" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 block rounded-md px-3 py-2 text-base font-medium">My Vehicles</a>
+		<a href="/php/add-vehicle.php" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 block rounded-md px-3 py-2 text-base font-medium">My Vehicles</a>
 		</div>
 	</div>
 	</nav>

@@ -1,19 +1,17 @@
-<?php
-
-	session_start();
-
-?>
-
 <!doctype html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>CarShair: Find or Share a Car</title>
-	<link href="/output.css" rel="stylesheet">
-	<script src="/scripts/app.js"></script>
-	<script type="module" defer src="https://cdn.what3words.com/javascript-components@4.1.0/dist/what3words/what3words.esm.js"></script>
-	<script nomodule defer src="https://cdn.what3words.com/javascript-components@4.1.0/dist/what3words/what3words.js"></script> 
+	<link href="../styles/output.css" rel="stylesheet">
+	<script src="../scripts/app.js"></script>
+	<?php
+	$page = $_SERVER['PHP_SELF'];
+	if ($page === '/php/search.php') {
+		echo "<script type='module' src='../scripts/google_show_map.js'></script>";
+	}
+	?>
 </head>
 <body>
 	<nav class="bg-primary-500">
@@ -58,7 +56,7 @@
 				<a href="/index.php" class="bg-secondary-500 text-primary-900 rounded-md px-3 py-2 text-lg font-medium" aria-current="page">Home</a>
 				<a href="/php/search.php" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 rounded-md px-3 py-2 text-lg font-medium">Search</a>
 				<a href="#" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 rounded-md px-3 py-2 text-lg font-medium">My Bookings</a>
-				<a href="/php/add-vehicle.php" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 rounded-md px-3 py-2 text-lg font-medium">My Vehicles</a>
+				<a href="/php/my-vehicles.php" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 rounded-md px-3 py-2 text-lg font-medium">My Vehicles</a>
 			</div>
 			</div>
 		</div>
@@ -69,14 +67,22 @@
 				<button type="button" class="bg-secondary-500 relative flex w-10 h-10 justify-center items-center rounded-full text-sm" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
 				<span class="absolute -inset-1.5"></span>
 				<span class="sr-only">Open user menu</span>
-				<svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 640 512" class="fill-primary-500"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
+				<?php
+					if (isset($_SESSION['u_id'])) {
+						$firstInitial = strtoupper($_SESSION["u_first"][0]);
+						$lastInitial = strtoupper($_SESSION["u_last"][0]);
+						echo "<p><b>$firstInitial$lastInitial</b></p>";
+					} else {
+						echo '<svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 640 512" class="fill-primary-500"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>';
+					}
+				?>
 				</button>
 			</div>
 
 			<!--
 				Dropdown menu, show/hide based on menu state.
 			-->
-			<div id="profile-menu" class="absolute bg-secondary-500 top-[60px] -right-[16px] z-10 mt-2 w-50 origin-top-right rounded-bl-md pt-1 pb-3 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" >
+			<div id="profile-menu" class="absolute bg-secondary-500 top-[64px] -right-[12px] z-10 mt-2 w-50 origin-top-right rounded-md pt-1 pb-3 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" >
 				<!-- Login -->
 				<?php
 					if (isset($_SESSION['u_id'])) {
@@ -118,7 +124,7 @@
 		<a href="/php/search.php" class="bg-secondary-500 text-primary-900 block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Home</a>
 		<a href="/php/search.php" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 block rounded-md px-3 py-2 text-base font-medium">Search</a>
 		<a href="#" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 block rounded-md px-3 py-2 text-base font-medium">My Bookings</a>
-		<a href="/php/add-vehicle.php" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 block rounded-md px-3 py-2 text-base font-medium">My Vehicles</a>
+		<a href="/php/my-vehicles.php" class="text-secondary-500 hover:bg-secondary-100 hover:text-primary-500 block rounded-md px-3 py-2 text-base font-medium">My Vehicles</a>
 		</div>
 	</div>
 	</nav>

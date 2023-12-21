@@ -6,7 +6,7 @@
 
 <section class="flex flex-col justify-center items-center">
     <div class="mt-4 mb-8">
-        <h2 >Signup to CarShair and start hiring or renting cars today.</h2>
+      <h2 >Signup to CarShair and start hiring or renting cars today.</h2>
     </div>
     <form class="m-auto flex flex-col" id="signup-form" action="../includes/signup.inc.php" method="POST" novalidate>
         <div  class="flex flex-col my-1">

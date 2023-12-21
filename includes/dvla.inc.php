@@ -26,6 +26,7 @@ curl_setopt_array($curl, array(
 ));
 
 $response = curl_exec($curl);
+$dvlaError = null;
 
 if ($response !== false) {
     
@@ -33,6 +34,11 @@ if ($response !== false) {
 
     if ($info['http_code'] !== 200) {
         $dvla_data = null;
+        if ($info['http_code'] === 400) {
+            $dvlaError = '*Invalid format - please provide a UK vehicle registration';
+        } else if ($info['http_code'] === 404) {
+            $dvlaError = '*Vehicle not found';
+        }
     } else {
         $dvla_data = json_decode($response, true);
     }

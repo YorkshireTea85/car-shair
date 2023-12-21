@@ -6,7 +6,7 @@ const lngInput = document.getElementById("longitude");
 const CONFIGURATION = {
   "ctaTitle": "Checkout",
   "mapOptions": {"center":{"lat":37.4221,"lng":-122.0841},"fullscreenControl":false,"mapTypeControl":false,"streetViewControl":false,"zoom":17,"zoomControl":false,"maxZoom":22,"mapId":""},
-  "mapsApiKey": "AIzaSyClic2YN5sAkhh5Ok-APGg7ivwpHtjN7oA",
+  "mapsApiKey": "AIzaSyB5kdkoJyTq-MCgYuBWBrjnuU-ZQbfwopc",
   "capabilities": {"addressAutocompleteControl":true,"mapDisplayControl":false,"ctaControl":false}
 };
 
